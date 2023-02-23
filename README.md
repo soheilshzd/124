@@ -50,3 +50,36 @@ radius = 2; % set the radius of the circle
 x = radius*cos(theta);
 y = radius*sin(theta);
 plot(x,y)
+
+
+
+
+
+% define circle
+r = 1; % radius
+c = [2, 0]; % center
+t = linspace(0, 2*pi, 100);
+x = c(1) + r*cos(t);
+y = c(2) + r*sin(t);
+
+% plot circle
+figure;
+h = plot(x, y);
+
+% plot points with delay
+for i = 1:5
+    for j = 1:5
+        pause(1); % pause for 1 second
+        delete(h); % delete previous plot
+        xj = c(1) + j - 1; % calculate x coordinate
+        yi = c(2) + i - 1; % calculate y coordinate
+        hold on;
+        h = plot(xj, yi, 'ro'); % plot new point
+        plot(x, y); % plot circle
+        hold off;
+        axis equal;
+        xlim([c(1)-r-1, c(1)+r+1]); % set x limits to show entire circle
+        ylim([c(2)-r-1, c(2)+r+1]); % set y limits to show entire circle
+        drawnow;
+    end
+end
